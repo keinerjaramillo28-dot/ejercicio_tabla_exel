@@ -20,4 +20,5 @@ parqueadero.registrar_entrada("", "")
 opcion = input("¿Desea registrar la salida? (si/no): ")
 if opcion == "si":
     parqueadero.registrar_salida()
-    parqueadero.mostrar_informacion()
+
+    parqueadero.imprimir_informacion()

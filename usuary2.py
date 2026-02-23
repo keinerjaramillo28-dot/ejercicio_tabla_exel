@@ -15,7 +15,4 @@ class usuario:
         return self.rango
     def set_rango(self, nuevo_rango):
         self.rango = nuevo_rango
-    def mostrar_informacion(self):
-        print(f"Nombre: {self.nombre}")
-        print(f"Cédula: {self.cedula}")
-        print(f"Rango: {self.rango}")
+    

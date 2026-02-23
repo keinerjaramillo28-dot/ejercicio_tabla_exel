@@ -16,9 +16,5 @@ class Carro:
         return self.color
     def set_color(self, nuevo_color):
         self.color = nuevo_color
-    def mostrar_informacion(self):
-        print(f"Marca: {self.marca}")
-        print(f"Placa: {self.placa}")
-        print(f"Color: {self.color}")
-
     
+

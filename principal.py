@@ -1,47 +1,75 @@
+from vegetales import cebolla, tomate, pasta
+from herramientas import cuchillo, olla
+from cocina_a import cocina
 
-class principal:
-    from usuary import usuario
-    from calculadora import calculadora
-    from num import numeros
-    
-    usuario = usuario("jaramillo","1090401071")
-    num1 = numeros(7)
-    num2 = numeros(10)
+def verificar_inventario():
+    print("Entré a la verificación")
 
-    calculadora = calculadora(num1,num2)
+    vegetales = ["Olla", "Cuchillo", "Cebolla", "Tomate", "Pasta", "Agua"]
 
-    suma = calculadora.suma
-    resta=calculadora.resta
-    multiplicacio=calculadora.multiplicacion
-    division=calculadora.division
+    for item in vegetales:  # Cambié el nombre para no sobrescribir la lista
+        while True:
+            respuesta = input(f"¿Tienes {item}? (si/no): ").lower()
+            if respuesta == "si":
+                break
+            elif respuesta == "no":
+                print(f"No tienes {item}. No puedes continuar.")
+                return False
 
-    fecha_actual = calculadora.get_fecha()
-    fecha_cambiada=calculadora.get_fecha('2025-11-01')
-
-    #mostrar resultado
-    print(usuario.mostrar_resultado())
-    print(calculadora.mostar_resultao())
-    print(num1.mostrar_resultado())
-    print(num2.mostrar.resultado())
-    print(f"suma: {suma}")
-    print(f"resta: {resta}")
-    print(f"multiplicacion: {multiplicacio}")
-    print(f"divicion: {division}")
-    print(f"fecha de la calculadora (antes):{fecha_actual}")
-    print(f"fecha de la calculadora (despues):{fecha_cambiada}")
-          
-
-
-
+    print("Inventario completo. ¡Puedes comenzar!")
+    return True
     
 
+def juego():
+    if not verificar_inventario():
+        return
+
+    # Crear objetos correctamente con parámetros si los requieren
+    mi_pasta = pasta()
+    mi_olla = olla()
+    mi_cuchillo = cuchillo(filo=100)  
+    mi_cebolla = cebolla()
+    mi_tomate = tomate()
+    agua = True
+
+    print("lugar de batalla: COCINA")
+
+    # Cortar cebolla
+    while not mi_cebolla.esta_muerta():  # Ahora existe el método esta_muerta()
+        accion = input("¿Qué quieres hacer? (1-cortar/2-afilar cuchillo): ")
+        if accion == "1":
+            mi_cuchillo.usar(mi_cebolla)
+            mi_cebolla.mostrar_vida()
+            if mi_cebolla.esta_muerta():
+                mi_cebolla.morir()
+        elif accion == "2":
+            mi_cuchillo.afilar()
+        
+    # Cortar tomate
+    while not mi_tomate.esta_muerta():
+        accion = input("¿Qué quieres hacer? (1-cortar/2-afilar cuchillo): ")
+        if accion == "1":
+            mi_cuchillo.usar(mi_tomate)
+            mi_tomate.mostrar_vida()
+            if mi_tomate.esta_muerta():
+                mi_tomate.morir()
+        elif accion == "2":
+            mi_cuchillo.afilar()
+    
+    print("Has cortado los ingredientes. Agregando a la olla....")
+    
+
+    # Hervir la pasta
+    while mi_pasta.get_vida() < 100:
+        respuesta = input("¿Quieres hervir la pasta? (s/n): ")
+        if respuesta.lower() == "s":
+            mi_pasta.hervir()
+        elif respuesta.lower() == "n":
+            print("No herviste la pasta. Juego terminado.")
+            return
+    
+    print("Combate Culinario completado.")
+    print("La pasta ha sido servida con éxito.")
 
 
-
-
-
-
-
-
-
- 
+juego()
